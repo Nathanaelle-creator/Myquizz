@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+      body {
+        background-color: #2B4570;
+        margin: 0;
+        font-family: sans-serif;
+    }
+    .example-wrapper {
+        margin: 2em auto;
+        max-width: 800px;
+        width: 95%;
+        color:white;
+    }
+
+    .account-info  {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1em;
+        border-radius: 8px;
+        margin-top: 2em;
+    }
+
+    .account-info h2 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.5em;
+    }
+   .example-wrapper .account-info a {
+    color: #E49273;
+    text-decoration: none;
+    font-weight: bold;
+    }
+    .example-wrapper .account-info a:hover {
+    text-decoration: underline;
+    color: #ff6666;
+    }
+</style>
+<div class="example-wrapper">
+    <h1>Connexion </h1>
+    <div class="account-info">
+    
+
+    <form action="{{ path('app_login') }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    <label for="username">Email:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password" required>
+
+    <input type="hidden" name="target_path" value="{{ path('app_account') }}">
+
+    <button type="submit">Login</button>
+</form>
+ <a href="{{ path('app_register') }}">Register</a>
+</div>
+</div>
+{% endblock %}

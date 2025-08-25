@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+<style>
+    body {
+        background-color: #2B4570;
+        margin: 0;
+        font-family: sans-serif;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: flex-end;
+        gap: 2em;
+        background-color: #7180AC;
+        padding: 1em;
+    }
+
+    .nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-bar a:hover {
+        background-color: #E49273;
+    }
+  
+    .account-info ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    .example-wrapper {
+        margin: 2em auto;
+        max-width: 800px;
+        width: 95%;
+        color:white;
+    }
+
+    .account-info  {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1em;
+        border-radius: 8px;
+        margin-top: 2em;
+    }
+
+    .account-info h2 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.5em;
+    }
+   .example-wrapper .account-info a {
+    color: #E49273;
+    text-decoration: none; 
+    font-weight: bold;
+    }
+
+    .example-wrapper .account-info a:hover {
+    text-decoration: underline;
+    color: #ff6666;
+    }
+</style>
+<div class="nav-bar">
+    <a href="{{ path('home') }}">Home</a>
+    <a href="{{ path('app_account') }}">Compte</a>
+    <a href="{{ path('app_logout') }}">Logout</a>
+</div>
+<div class="example-wrapper">
+    <h1>Admin</h1>
+     <div class="account-info">
+    <h1>User</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>ConfirmationToken</th>
+                <td>{{ user.confirmationToken }}</td>
+            </tr>
+            <tr>
+                <th>IsVerified</th>
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+     </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #2B4570;
+        margin: 0;
+        font-family: sans-serif;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: flex-end;
+        gap: 2em;
+        background-color: #7180AC;
+        padding: 1em;
+    }
+
+    .nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-bar a:hover {
+       background-color: #E49273;
+    }
+
+    .example-wrapper {
+        margin: 2em auto;
+        max-width: 800px;
+        width: 95%;
+        color:white;
+    }
+
+    .account-info  {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1em;
+        border-radius: 8px;
+        margin-top: 2em;
+    }
+
+    .account-info h2 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.5em;
+    }
+   .example-wrapper .account-info a {
+    color: #E49273;
+    text-decoration: none; 
+    font-weight: bold;
+    }
+
+    .example-wrapper .account-info a:hover {
+    text-decoration: underline;
+    color: #ff6666;
+    }
+</style>
+<div class="nav-bar">
+    <a href="{{ path('home') }}">Home</a>
+    <a href="{{ path('app_account') }}">Compte</a>
+    <a href="{{ path('app_logout') }}">Logout</a>
+      {% if app.user %}
+    <a href="{{ path('app_user_index') }}">➕Admin</a>
+    {% endif %}
+</div>
+
+<div class="example-wrapper">
+    <h2>Modification son email</h2>
+<div class="account-info">
+    {{ form(modifyEmail) }}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{# templates/quiz/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil du Quiz{% endblock %}
+{% block body %}
+<style>
+    body {
+        background-color: #2B4570;
+        margin: 0;
+        font-family: sans-serif;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: flex-end;
+        gap: 2em;
+        background-color: #7180AC;
+        padding: 1em;
+    }
+
+    .nav-bar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-bar a:hover {
+        background-color: #E49273;
+    }
+  
+    .account-info ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    .example-wrapper {
+        margin: 2em auto;
+        max-width: 800px;
+        width: 95%;
+        color:white;
+    }
+
+    .account-info  {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 1em;
+        border-radius: 8px;
+        margin-top: 2em;
+    }
+
+    .account-info h2 {
+        margin-top: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 0.5em;
+    }
+   .example-wrapper .account-info a {
+    color: #E49273;
+    text-decoration: none; 
+    font-weight: bold;
+    }
+
+    .example-wrapper .account-info a:hover {
+    text-decoration: underline;
+    }
+</style>
+<div class="nav-bar">
+    <a href="{{ path('home') }}">Home</a>
+    {% if app.user %}
+        <a href="{{ path('app_account') }}">Compte</a>
+        <a href="{{ path('app_logout') }}">Logout</a>
+        <a href="{{ path('app_user_index') }}">➕Admin</a>
+    {% else %}
+        <a href="{{ path('app_account') }}">Login</a>
+    {% endif %}
+</div>
+<div class="example-wrapper">
+    <h1>Choisis une catégorie </h1>
+     <div class="account-info">
+    <ul>
+    {% if app.user %}
+    <a href="{{ path('quiz_new') }}">➕Créer un nouveau quiz</a>
+{% endif %}
+        {% for categorie in categories %}
+            <li>
+                <a href="{{ path('quiz_step', { categorieId: categorie.id, step: 0 }) }}">
+                    {{ categorie.nom|trim }}
+                </a>
+            </li>
+        {% else %}
+            <li>Aucune catégorie disponible.</li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+{% endblock %}
