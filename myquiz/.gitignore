@@ -26,5 +26,4 @@
 
 /bdd.sql/
 node_modules/
-
-
+/data/bdd.sql
