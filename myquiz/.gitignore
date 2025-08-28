@@ -27,3 +27,6 @@
 /bdd.sql/
 node_modules/
 /data/bdd.sql
+myquiz/.env
+myquiz/.env.dev
+myquiz/.env.test
